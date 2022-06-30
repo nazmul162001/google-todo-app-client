@@ -80,7 +80,7 @@ const Todo = () => {
             type="submit"
             className="px-2 py-1 rounded ml-2 text-2xl bg-cyan-400 cursor-pointer"
           >
-            +
+          Add
           </button>
         </div>
         {todos.map((todo, index) => (
