@@ -10,7 +10,7 @@ const Todo = () => {
   // getting todo from server
   useEffect(() => {
     axios
-      .get('http://localhost:5000/api/user')
+      .get('https://serene-shelf-73574.herokuapp.com/api/user')
       .then((res) => setTodos(res.data));
   }, [todos]);
 
@@ -23,7 +23,7 @@ const Todo = () => {
     e.preventDefault();
     console.log(value);
     // send data to backend
-    await axios.post('http://localhost:5000/api/user', {
+    await axios.post('https://serene-shelf-73574.herokuapp.com/api/user', {
       todoTask: value,
     });
     setValue('');
@@ -50,7 +50,7 @@ const Todo = () => {
           icon: 'success',
         });
         await axios.delete(
-          `http://localhost:5000/api/user/${id}`
+          `https://serene-shelf-73574.herokuapp.com/api/user/${id}`
         );
       } else {
         // swal("Your imaginary file is safe!");
@@ -84,7 +84,11 @@ const Todo = () => {
           </button>
         </div>
         {todos.map((todo, index) => (
-          <TodoList key={index} todo={todo} handleDeleteTodo={handleDeleteTodo} />
+          <TodoList
+            key={index}
+            todo={todo}
+            handleDeleteTodo={handleDeleteTodo}
+          />
         ))}
       </form>
     </div>
