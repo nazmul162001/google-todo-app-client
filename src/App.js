@@ -1,6 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+import Todo from "./components/Todo/Todo";
+import CompletedTask from "./components/CompletedTask/CompletedTask";
+import Calender from "./components/Calender/Calender";
 
 function App() {
   return (
@@ -8,6 +11,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />}></Route>
+        <Route path="/todo" element={<Todo />}></Route>
+        <Route path="/complete" element={<CompletedTask />}></Route>
+        <Route path="/calender" element={<Calender />}></Route>
       </Routes>
     </div>
   );
