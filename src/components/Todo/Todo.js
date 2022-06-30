@@ -2,21 +2,23 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import TodoList from '../TodoList/TodoList';
 import './Todo.css';
+import swal from 'sweetalert';
 
 const Todo = () => {
   const [value, setValue] = useState('');
   const [todos, setTodos] = useState([]);
-
+  // getting todo from server
   useEffect(() => {
     axios
       .get('http://localhost:5000/api/user')
       .then((res) => setTodos(res.data));
   }, [todos]);
 
+  // handle change
   const handleChange = (e) => {
     setValue(e.target.value);
   };
-
+  // handle submit task
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(value);
@@ -32,6 +34,28 @@ const Todo = () => {
     if (e.keyCode === 13) {
       handleSubmit();
     }
+  };
+
+  // handle delete todo
+  const handleDeleteTodo = async (id) => {
+    swal({
+      title: 'Are you sure?',
+      text: 'You want to delete this todos?',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then(async (willDelete) => {
+      if (willDelete) {
+        swal('Successfully deleted your todos', {
+          icon: 'success',
+        });
+        await axios.delete(
+          `http://localhost:5000/api/user/${id}`
+        );
+      } else {
+        // swal("Your imaginary file is safe!");
+      }
+    });
   };
 
   return (
@@ -60,7 +84,7 @@ const Todo = () => {
           </button>
         </div>
         {todos.map((todo, index) => (
-          <TodoList key={index} todo={todo} />
+          <TodoList key={index} todo={todo} handleDeleteTodo={handleDeleteTodo} />
         ))}
       </form>
     </div>
