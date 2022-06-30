@@ -1,9 +1,13 @@
 import React from 'react';
+import { DayPicker } from 'react-day-picker';
+import 'react-day-picker/dist/style.css';
 
 const Calender = () => {
   return (
     <div>
-      <h2 className="text-4xl text-center py-5">This is my Calender route</h2>
+      <div className="calender w-full flex justify-center mt-3">
+      <DayPicker />
+      </div>
     </div>
   );
 };

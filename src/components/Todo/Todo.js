@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import TodoList from '../TodoList/TodoList';
 import './Todo.css';
@@ -9,10 +10,15 @@ const Todo = () => {
     setValue(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(value);
     // send data to backend
+    await axios.post('http://localhost:5000/api/user', {
+      todoTask: value
+    });
+    setValue('');
+    
   };
 
   //it triggers by pressing the enter key
