@@ -1,8 +1,6 @@
 .link {
   text-decoration: none;
-  margin: 0 10px;
   padding-bottom: 5px;
-  font-size: 20px;
   color: rgba(68, 62, 62, 0.753);
   transition: color ease-in-out 300ms;
   background-color: transparent;
@@ -15,9 +13,7 @@
 
 .active-link {
   text-decoration: none;
-  margin: 0 10px;
   padding-bottom: 5px;
-  font-size: 20px;
   transition: color ease-in-out 300ms;
   color: #74b9ff;
   background-color: transparent;
