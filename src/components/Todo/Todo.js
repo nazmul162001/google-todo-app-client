@@ -1,10 +1,17 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TodoList from '../TodoList/TodoList';
 import './Todo.css';
 
 const Todo = () => {
   const [value, setValue] = useState('');
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/user')
+      .then((res) => setTodos(res.data));
+  }, [todos]);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -15,10 +22,9 @@ const Todo = () => {
     console.log(value);
     // send data to backend
     await axios.post('http://localhost:5000/api/user', {
-      todoTask: value
+      todoTask: value,
     });
     setValue('');
-    
   };
 
   //it triggers by pressing the enter key
@@ -53,7 +59,9 @@ const Todo = () => {
             +
           </button>
         </div>
-        <TodoList />
+        {todos.map((todo, index) => (
+          <TodoList key={index} todo={todo} />
+        ))}
       </form>
     </div>
   );
