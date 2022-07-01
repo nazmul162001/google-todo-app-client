@@ -12,10 +12,10 @@ const Home = () => {
 
   return (
     <div className="w-full">
-      <h2 className="text-3xl text-center py-5">All Todo</h2>
-      <div className="all-todo w-3/5 mx-auto">
+      <h2 className="text-4xl text-gray-500 font-bold text-center py-5">All Todo</h2>
+      <div className="all-todo w-4/5 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {todos.map((todo) => (
-          <p>{todo.todoTask}</p>
+          <p className='p-3 bg-gray-300 m-1 rounded'>{todo.todoTask}</p>
         ))}
       </div>
     </div>

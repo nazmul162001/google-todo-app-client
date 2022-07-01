@@ -20,11 +20,11 @@ function App() {
 
   return (
     <div className="">
+      <Navbar />
       {loading ? (
         <Spinner />
       ) : (
         <div className="my-route">
-          <Navbar />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/todo" element={<Todo />}></Route>

@@ -75,7 +75,7 @@ const Todo = () => {
 
   return (
     <div className="todo-app w-full">
-      <h2 className="text-xl md:text-2xl lg:text-3xl text-center text-gray-500 py-5">
+      <h2 className="text-xl md:text-2xl lg:text-4xl text-center text-gray-500 py-5 font-bold">
         Add Your Daily To-Do Task
       </h2>
       <form className="todo w-full px-4 md:px-0 md:w-3/5 mx-auto max-w-full">
