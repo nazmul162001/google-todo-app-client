@@ -4,6 +4,7 @@ import TodoList from '../TodoList/TodoList';
 import './Todo.css';
 import swal from 'sweetalert';
 import UpdateModal from '../UpdateModal/UpdateModal';
+import Spinner from '../Spinner/Spinner';
 
 const Todo = () => {
   const [value, setValue] = useState('');
@@ -11,6 +12,7 @@ const Todo = () => {
   const [updatedModeId, setUpdatedModeId] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [update, setUpdate] = useState("");
+  const [isLoading, setIsloading] = useState(false);
 
 
 
@@ -20,6 +22,10 @@ const Todo = () => {
       .get('https://serene-shelf-73574.herokuapp.com/api/user')
       .then((res) => setTodos(res.data));
   }, [todos]);
+
+  if(isLoading){
+    return <Spinner />
+  }
 
   // handle change
   const handleChange = (e) => {
@@ -42,6 +48,7 @@ const Todo = () => {
       handleSubmit();
     }
   };
+
 
 
   // handle delete todo

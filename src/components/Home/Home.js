@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Home = () => {
   const [todos, setTodos] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
 
   useEffect(() => {
     axios
