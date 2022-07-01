@@ -5,10 +5,14 @@ import { BsTrash } from 'react-icons/bs';
 import UpdateModal from '../UpdateModal/UpdateModal';
 
 const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
-  const [checked, setChecked] = useState(false);
-  const { todoTask, _id } = todo;
+  const { todoTask, _id, complete } = todo;
+  const [checked, setChecked] = useState(complete);
 
-  
+  const handleCompleteTask = () => {
+    axios.put(`http://localhost:5000/api/user/${_id}`,{
+      complete: complete ? false : true 
+    })
+  }
   
   return (
     <div className="todo-list">
@@ -18,7 +22,7 @@ const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
             <input
               type="checkbox"
               defaultChecked={checked}
-              onChange={() => setChecked(!checked)}
+              onChange={handleCompleteTask}
             />
           </label>
           <div className="task ml-2">{todoTask}</div>
