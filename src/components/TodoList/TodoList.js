@@ -2,18 +2,17 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { FaRegEdit } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
-import UpdateModal from '../UpdateModal/UpdateModal';
 
 const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
   const { todoTask, _id, complete } = todo;
   const [checked, setChecked] = useState(complete);
 
   const handleCompleteTask = () => {
-    axios.put(`http://localhost:5000/api/user/${_id}`,{
-      complete: complete ? false : true 
-    })
-  }
-  
+    axios.put(`https://serene-shelf-73574.herokuapp.com/api/user/${_id}`, {
+      complete: complete ? false : true,
+    });
+  };
+
   return (
     <div className="todo-list">
       <div className="todo-task bg-gray-300 flex justify-between items-center mt-2 rounded">
@@ -25,7 +24,15 @@ const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
               onChange={handleCompleteTask}
             />
           </label>
-          <div className="task ml-2">{todoTask}</div>
+          {complete ? (
+            <div className="task ml-2">
+              <del>{todoTask}</del>{' '}
+            </div>
+          ) : (
+            <div className="task ml-2">
+              <span>{todoTask}</span>{' '}
+            </div>
+          )}
         </div>
         <div className="action p-3 flex">
           <label

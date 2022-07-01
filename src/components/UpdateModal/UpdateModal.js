@@ -5,19 +5,21 @@ const UpdateModal = ({ updatedModeId, setShowModal }) => {
   const [updatedTask, setUpdatedTask] = useState('');
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/user/${updatedModeId}`)
-    .then(data => setUpdatedTask(data.data[0].todoTask))
+    axios
+      .get(`https://serene-shelf-73574.herokuapp.com/api/user/${updatedModeId}`)
+      .then((data) => setUpdatedTask(data.data[0].todoTask));
   }, [updatedModeId]);
 
+  const handleUpdatedTodos = async () => {
+    axios.put(
+      `https://serene-shelf-73574.herokuapp.com/api/user/${updatedModeId}`,
+      {
+        todoTask: updatedTask,
+      }
+    );
+    setShowModal(false);
+  };
 
-  const handleUpdatedTodos = async() => {
-    axios.put(`http://localhost:5000/api/user/${updatedModeId}`,{
-      todoTask: updatedTask
-    })
-    setShowModal(false)
-  }
-  
-  
   return (
     <div>
       <input type="checkbox" id="my-modal-6" class="modal-toggle" />
