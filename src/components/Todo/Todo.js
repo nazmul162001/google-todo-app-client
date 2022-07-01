@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react';
 import TodoList from '../TodoList/TodoList';
 import './Todo.css';
 import swal from 'sweetalert';
+import UpdateModal from '../UpdateModal/UpdateModal';
 
 const Todo = () => {
   const [value, setValue] = useState('');
   const [todos, setTodos] = useState([]);
+  const [updatedModeId, setUpdatedModeId] = useState(0)
+  const [update, setUpdate] = useState("");
   // getting todo from server
   useEffect(() => {
     axios
@@ -58,6 +61,13 @@ const Todo = () => {
     });
   };
 
+
+   // update
+   const handleUpdateTodo =async (id) => {
+    console.log(id);
+    setUpdatedModeId(id)
+  }
+
   return (
     <div className="todo-app w-full">
       <h2 className="text-xl md:text-2xl lg:text-3xl text-center text-gray-500 py-5">
@@ -83,14 +93,18 @@ const Todo = () => {
           Add
           </button>
         </div>
-        {todos.map((todo, index) => (
+      </form>
+      <div className="get-todo w-full px-4 md:px-0 md:w-3/5 mx-auto">
+      {todos.map((todo, index) => (
           <TodoList
             key={index}
             todo={todo}
             handleDeleteTodo={handleDeleteTodo}
+            handleUpdateTodo={handleUpdateTodo}
           />
         ))}
-      </form>
+      </div>
+      <UpdateModal updatedModeId={updatedModeId}/>
     </div>
   );
 };

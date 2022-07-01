@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { FaRegEdit } from 'react-icons/fa';
 import { BsTrash } from 'react-icons/bs';
+import UpdateModal from '../UpdateModal/UpdateModal';
 
-const TodoList = ({todo, handleDeleteTodo}) => {
+const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
   const [checked, setChecked] = useState(false);
-  const {todoTask, _id} = todo;
+  const { todoTask, _id } = todo;
+
+  
+  
   return (
     <div className="todo-list">
       <div className="todo-task bg-gray-300 flex justify-between items-center mt-2 rounded">
@@ -19,10 +24,21 @@ const TodoList = ({todo, handleDeleteTodo}) => {
           <div className="task ml-2">{todoTask}</div>
         </div>
         <div className="action p-3 flex">
-          <FaRegEdit className="text-xl hover:text-cyan-400 cursor-pointer" />
-          <BsTrash onClick={()=> handleDeleteTodo(_id)} className="mx-2 text-xl hover:text-red-500 cursor-pointer" />
+          <label
+            onClick={() => handleUpdateTodo(_id)}
+            for="my-modal-6"
+            class="text-xl hover:text-cyan-400 cursor-pointer"
+          >
+            <FaRegEdit className="text-xl hover:text-cyan-400 cursor-pointer" />
+          </label>
+
+          <BsTrash
+            onClick={() => handleDeleteTodo(_id)}
+            className="mx-2 text-xl hover:text-red-500 cursor-pointer"
+          />
         </div>
       </div>
+      {/* <UpdateModal /> */}
     </div>
   );
 };
