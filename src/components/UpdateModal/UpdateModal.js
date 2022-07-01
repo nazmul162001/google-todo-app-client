@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const UpdateModal = ({ updatedModeId }) => {
+const UpdateModal = ({ updatedModeId, setShowModal }) => {
   const [updatedTask, setUpdatedTask] = useState('');
 
   useEffect(() => {
@@ -9,6 +9,15 @@ const UpdateModal = ({ updatedModeId }) => {
     .then(data => setUpdatedTask(data.data[0].todoTask))
   }, [updatedModeId]);
 
+
+  const handleUpdatedTodos = async() => {
+    axios.put(`http://localhost:5000/api/user/${updatedModeId}`,{
+      todoTask: updatedTask
+    })
+    setShowModal(false)
+  }
+  
+  
   return (
     <div>
       <input type="checkbox" id="my-modal-6" class="modal-toggle" />
@@ -25,6 +34,7 @@ const UpdateModal = ({ updatedModeId }) => {
               placeholder="update your todo"
             />
             <button
+              onClick={handleUpdatedTodos}
               type="submit"
               className="px-2 py-1 rounded ml-2 text-2xl bg-cyan-400 cursor-pointer"
             >

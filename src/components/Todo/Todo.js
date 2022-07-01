@@ -9,6 +9,7 @@ const Todo = () => {
   const [value, setValue] = useState('');
   const [todos, setTodos] = useState([]);
   const [updatedModeId, setUpdatedModeId] = useState(0)
+  const [showModal, setShowModal] = useState(false)
   const [update, setUpdate] = useState("");
   // getting todo from server
   useEffect(() => {
@@ -64,8 +65,8 @@ const Todo = () => {
 
    // update
    const handleUpdateTodo =async (id) => {
-    console.log(id);
     setUpdatedModeId(id)
+    setShowModal(true)
   }
 
   return (
@@ -104,7 +105,7 @@ const Todo = () => {
           />
         ))}
       </div>
-      <UpdateModal updatedModeId={updatedModeId}/>
+      {showModal ? <UpdateModal updatedModeId={updatedModeId} setShowModal ={setShowModal}/> : null}
     </div>
   );
 };
