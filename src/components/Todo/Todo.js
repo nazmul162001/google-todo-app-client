@@ -11,6 +11,9 @@ const Todo = () => {
   const [updatedModeId, setUpdatedModeId] = useState(0)
   const [showModal, setShowModal] = useState(false)
   const [update, setUpdate] = useState("");
+
+
+
   // getting todo from server
   useEffect(() => {
     axios
@@ -39,6 +42,7 @@ const Todo = () => {
       handleSubmit();
     }
   };
+
 
   // handle delete todo
   const handleDeleteTodo = async (id) => {

@@ -19,6 +19,7 @@ const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
         <div className="p-3 flex items-center w-full">
           <label>
             <input
+              className='checkbox'
               type="checkbox"
               defaultChecked={checked}
               onChange={handleCompleteTask}
@@ -49,7 +50,6 @@ const TodoList = ({ todo, handleDeleteTodo, handleUpdateTodo }) => {
           />
         </div>
       </div>
-      {/* <UpdateModal /> */}
     </div>
   );
 };
