@@ -20,6 +20,7 @@ const UpdateModal = ({ updatedModeId, setShowModal }) => {
     setShowModal(false);
   };
 
+
   return (
     <div>
       <input type="checkbox" id="my-modal-6" class="modal-toggle" />

@@ -16,7 +16,7 @@ const CompletedTask = () => {
       <h2 className="text-4xl text-center py-5 text-gray-500 font-bold">Completed Task</h2>
       <div className="completed-task w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {completed?.map((complete) => (
-          <li className="w-3/5 mx-auto bg-gray-300 m-1 p-3 list-none flex justify-center items-center"><GiCheckMark className='mr-2' /> {complete.todoTask}</li>
+          <li className="w-full md:w-4/5 rounded mx-auto bg-gray-300 m-1 p-3 list-none flex justify-center items-center"><GiCheckMark className='mr-2' /> {complete.todoTask}</li>
         ))}
       </div>
     </div>
